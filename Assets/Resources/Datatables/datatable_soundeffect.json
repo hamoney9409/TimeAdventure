@@ -1,0 +1,15 @@
+[
+	{
+		"ClassID": 1,
+		"ClassName": "Damaged",
+		"FileNames":
+		[ 
+			"Sounds/Damaged1",
+			"Sounds/Damaged2",
+			"Sounds/Damaged3",
+			"Sounds/Damaged4",
+			"Sounds/Damaged5",
+			"Sounds/Damaged6",
+		]
+	}, 
+]

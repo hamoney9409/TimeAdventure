@@ -1,0 +1,12 @@
+[
+	{
+		"ClassID": 1,
+		"ClassName": "Main",
+		"BGMInfo":
+		[
+			{"FileName":"BGMs/Title", "StartTime":0.0},
+		]
+	}, 
+]
+
+
