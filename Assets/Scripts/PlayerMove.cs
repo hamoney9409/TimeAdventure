@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour{
         targetPosition = transform.position;
     }
 
+
     void Update(){
         if (Input.GetMouseButton(0)) {
             SetTargetPosition();
@@ -28,7 +29,9 @@ public class PlayerMove : MonoBehaviour{
         MovePlayer();
     }
 
+
     void SetTargetPosition() {
+
         Plane plane = new Plane(Vector3.up, transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float point = 0f;
