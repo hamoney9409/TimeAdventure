@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuitGame : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+public class QuitGame : MonoBehaviour
+{
+    public void OnApplicationQuit()
+    {
+        Debug.Log("게임 종료");
         Application.Quit();
-	}
-
-    private void OnApplicationQuit(){
-        
     }
 }
