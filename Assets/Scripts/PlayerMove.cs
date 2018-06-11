@@ -6,15 +6,19 @@ using System.Collections;
 [RequireComponent(typeof(NavMeshAgent))]
 
 public class PlayerMove : MonoBehaviour{
-
     private Vector3 targetPosition;
+    private int animState = 0;
 
     const int LEFT_MOUSE_BUTTON = 0;
-
+    const int CHILDID_MODEL = 0;
+    
     NavMeshAgent agent;
+    Animation anim;
 
-    void Awake() {
+    void Awake()
+    {
         agent = GetComponent<NavMeshAgent>();
+        anim = transform.GetChild(CHILDID_MODEL).GetComponent<Animation>();
     }
 
     void Start() {
@@ -27,6 +31,13 @@ public class PlayerMove : MonoBehaviour{
             SetTargetPosition();
         }
         MovePlayer();
+        if (animState != 0 &&
+            targetPosition.x.Equals(transform.position.x)
+            && targetPosition.z.Equals(transform.position.z))
+        {
+            anim.Play("idle");
+            animState = 0;
+        }
     }
 
 
@@ -56,10 +67,11 @@ public class PlayerMove : MonoBehaviour{
             targetPosition.x = targetPosition.x + 1;
         }
 
+        anim.Play("walk");
+        animState = 1;
     }
 
     void MovePlayer() {
         agent.SetDestination(targetPosition);
-
     }
 }
