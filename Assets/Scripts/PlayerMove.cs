@@ -7,7 +7,6 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour{
     private Vector3 targetPosition;
-    private int animState = 0;
 
     const int LEFT_MOUSE_BUTTON = 0;
     const int CHILDID_MODEL = 0;
@@ -31,13 +30,6 @@ public class PlayerMove : MonoBehaviour{
             SetTargetPosition();
         }
         MovePlayer();
-        if (animState != 0 &&
-            targetPosition.x.Equals(transform.position.x)
-            && targetPosition.z.Equals(transform.position.z))
-        {
-            anim.Play("idle");
-            animState = 0;
-        }
     }
 
 
@@ -66,9 +58,6 @@ public class PlayerMove : MonoBehaviour{
         else if (targetPosition.x % 2 == 0 && targetPosition.z % 2 == 1) {
             targetPosition.x = targetPosition.x + 1;
         }
-
-        anim.Play("walk");
-        animState = 1;
     }
 
     void MovePlayer() {
