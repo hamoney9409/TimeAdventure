@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class JoyStick : MonoBehaviour
-{
+public class JoyStick : MonoBehaviour{
 
     // 공개
     public Transform Player;        // 플레이어.
@@ -16,8 +15,7 @@ public class JoyStick : MonoBehaviour
     private float Radius;           // 조이스틱 배경의 반 지름.
     private bool MoveFlag;          // 플레이어 움직임 스위치.
 
-    void Start()
-    {
+    void Start(){
         Radius = GetComponent<RectTransform>().sizeDelta.y * 0.5f;
         StickFirstPos = Stick.transform.position;
 
@@ -28,15 +26,13 @@ public class JoyStick : MonoBehaviour
         MoveFlag = false;
     }
 
-    void Update()
-    {
+    void Update(){
         if (MoveFlag)
             Player.transform.Translate(Vector3.forward * Time.deltaTime * 10f);
     }
 
     // 드래그
-    public void Drag(BaseEventData _Data)
-    {
+    public void Drag(BaseEventData _Data){
         MoveFlag = true;
         PointerEventData Data = _Data as PointerEventData;
         Vector3 Pos = Data.position;
@@ -54,12 +50,14 @@ public class JoyStick : MonoBehaviour
         else
             Stick.position = StickFirstPos + JoyVec * Radius;
 
-        Player.eulerAngles = new Vector3(0, Mathf.Atan2(JoyVec.x, JoyVec.y) * Mathf.Rad2Deg, 0);
+		//JoyVec.x = JoyVec.x * Mathf.Sin(45);
+		//JoyVec.y = JoyVec.y * Mathf.Sin(45);
+		
+        Player.eulerAngles = new Vector3(0, Mathf.Atan2(JoyVec.x, JoyVec.y) * Mathf.Rad2Deg - 45, 0);
     }
 
     // 드래그 끝.
-    public void DragEnd()
-    {
+    public void DragEnd(){
         Stick.position = StickFirstPos; // 스틱을 원래의 위치로.
         JoyVec = Vector3.zero;          // 방향을 0으로.
         MoveFlag = false;
