@@ -14,7 +14,7 @@ public class BoxDrop : MonoBehaviour {
     void Drop()
     {
         isDrop = true;
-        Destroy(Box);
+        Destroy(Box,1);
 
 }
 }

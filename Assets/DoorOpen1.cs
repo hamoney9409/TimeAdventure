@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class DoorOpen1 : MonoBehaviour
 {
-
+    
     int cnt = 0;
     bool isOpen = false; 
-    private void OnTriggerEnter(Collider other) 
+   
+    
+    public void Open()
     {
-        if (other.gameObject.tag == "Player" && !isOpen) Open(); 
-    }
-    void Open()
-    {
-        isOpen = true; 
+        if (isOpen)
+        {
+            return;
+        } 
         cnt++; 
         Vector3 rot = transform.eulerAngles; 
         rot.y -= 1f; 
         transform.eulerAngles = rot;
         if (cnt < 90) Invoke("Open", Time.deltaTime); 
-        else 
-            cnt = 0; 
+        else
+        {
+            isOpen = true;
+            cnt = 0;
+        }
+        
     }
 }
