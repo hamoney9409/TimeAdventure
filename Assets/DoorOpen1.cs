@@ -15,11 +15,15 @@ public class DoorOpen1 : MonoBehaviour
         {
             return;
         } 
-        cnt++; 
+        cnt++;
         Vector3 rot = transform.eulerAngles; 
         rot.y -= 1f; 
         transform.eulerAngles = rot;
-        if (cnt < 90) Invoke("Open", Time.deltaTime); 
+        if (cnt < 90)
+        {
+            Invoke("Open", Time.deltaTime);
+            
+        }
         else
         {
             isOpen = true;
