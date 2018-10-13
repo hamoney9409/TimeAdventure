@@ -28,7 +28,7 @@ public class JoyStick : MonoBehaviour{
 
     void Update(){
         if (MoveFlag)
-            Player.transform.Translate(Vector3.forward * Time.deltaTime * 10f);
+            Player.transform.Translate(Vector3.forward * Time.deltaTime * 5f);
     }
 
     // 드래그
@@ -48,12 +48,23 @@ public class JoyStick : MonoBehaviour{
             Stick.position = StickFirstPos + JoyVec * Dis;
         // 거리가 반지름보다 커지면 조이스틱을 반지름의 크기만큼만 이동.
         else
+	
             Stick.position = StickFirstPos + JoyVec * Radius;
-
-		//JoyVec.x = JoyVec.x * Mathf.Sin(45);
-		//JoyVec.y = JoyVec.y * Mathf.Sin(45);
+			
+		Player.eulerAngles = new Vector3(0, Mathf.Atan2(JoyVec.x, JoyVec.y) * Mathf.Rad2Deg - 45, 0);
 		
-        Player.eulerAngles = new Vector3(0, Mathf.Atan2(JoyVec.x, JoyVec.y) * Mathf.Rad2Deg - 45, 0);
+		if(Player.eulerAngles.y >=45 && Player.eulerAngles.y <135){
+			Player.eulerAngles = new Vector3(0,90,0);
+		}
+		else if(Player.eulerAngles.y >=135 && Player.eulerAngles.y <225){
+			Player.eulerAngles = new Vector3(0,180,0);
+		}
+		else if(Player.eulerAngles.y >=225 && Player.eulerAngles.y <315){
+			Player.eulerAngles = new Vector3(0,270,0);
+		}
+		else if((Player.eulerAngles.y >=315 && Player.eulerAngles.y <360)||(Player.eulerAngles.y >=0 && Player.eulerAngles.y <45)){
+			Player.eulerAngles = new Vector3(0,0,0);
+		}
     }
 
     // 드래그 끝.
