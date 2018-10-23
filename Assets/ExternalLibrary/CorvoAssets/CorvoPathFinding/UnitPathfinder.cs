@@ -78,15 +78,21 @@ public class UnitPathfinder:MonoBehaviour
     {
         if (GetComponent<CorvoPathFinder>().getDestination().Equals(transform.position) )
             GetComponent<CorvoPathFinder>().nextNode();
+
 		//was last node?
-		if (GetComponent<CorvoPathFinder>().foundPath==null)
+		if (GetComponent<CorvoPathFinder>().foundPath == null)
 		{
 			if (transform.position.Equals(destination))
-			{//not arrived yet
-				updatePath();
-			}
+            {
+                //arrived
+                stop();
+            }
 			else
-				stop();//arrived
+            {
+                //not arrived yet
+                updatePath();
+            }
+				
 		}
     }
 }
