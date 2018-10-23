@@ -76,12 +76,12 @@ public class UnitPathfinder:MonoBehaviour
 	
 	public void checkReachedNode()//Check if reached next Pathnode
     {
-		if (Vector3.Distance(GetComponent<CorvoPathFinder>().getDestination(), transform.position) < 1.3f)
-			GetComponent<CorvoPathFinder>().nextNode();
+        if (GetComponent<CorvoPathFinder>().getDestination().Equals(transform.position) )
+            GetComponent<CorvoPathFinder>().nextNode();
 		//was last node?
 		if (GetComponent<CorvoPathFinder>().foundPath==null)
 		{
-			if (Vector3.Distance (transform.position, destination) > 5)
+			if (transform.position.Equals(destination))
 			{//not arrived yet
 				updatePath();
 			}
