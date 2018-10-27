@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class UnitPathfinder:MonoBehaviour
 {
 	//AI PARAMETERS
-	public float speed=5;
-	public rotationType updateRotation=rotationType.rotateLeftRight;
+	public float moveSpeed=5;
+    public float rotationSpeed = 300;
+    public rotationType updateRotation=rotationType.rotateLeftRight;
 	
 	//altro
 	Vector3 destination;
@@ -39,10 +40,24 @@ public class UnitPathfinder:MonoBehaviour
 								_dir2D=(pf.getDestination()-transform.position).normalized;
 							else//don't update z axis
 								_dir2D=((pf.getDestination()-Vector3.up*pf.getDestination().y)-(transform.position-Vector3.up*transform.position.y)).normalized;
-							transform.rotation=Quaternion.RotateTowards(transform.rotation,Quaternion.LookRotation(_dir2D),Time.deltaTime*speed*60);
+
+							transform.rotation = Quaternion.RotateTowards(transform.rotation,Quaternion.LookRotation(_dir2D),Time.deltaTime*rotationSpeed);
 						}
-						transform.position=Vector3.MoveTowards(transform.position,pf.getDestination(),Time.deltaTime*speed);
-					}
+
+                        if (Vector3.Distance(transform.position, pf.getDestination() ) < Time.deltaTime * moveSpeed)
+                        {
+                            //transform.position = new Vector3((int)pf.getDestination().x, (int)pf.getDestination().y, (int)pf.getDestination().z);
+                            transform.position = pf.getDestination();
+                            //transform.position.Set(pf.getDestination().x, pf.getDestination().y, pf.getDestination().z);
+                            //Debug.Log(pf.getDestination());
+                            //Debug.Log(transform.position);
+                        }
+                        else
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, pf.getDestination(), Time.deltaTime * moveSpeed);
+                        }
+
+                    }
 				}
 			}
 			else
@@ -76,15 +91,41 @@ public class UnitPathfinder:MonoBehaviour
 	
 	public void checkReachedNode()//Check if reached next Pathnode
     {
-        if (GetComponent<CorvoPathFinder>().getDestination().Equals(transform.position) )
-            GetComponent<CorvoPathFinder>().nextNode();
+        Vector3 curDestination = GetComponent<CorvoPathFinder>().getDestination();
+        //if (GetComponent<CorvoPathFinder>().getDestination().Equals(transform.position) )
+        if (transform.position.x == curDestination.x && transform.position.z == curDestination.z)
+
+        {
+            if (Mathf.Abs(transform.position.y - curDestination.y) < 0.2f)
+            {
+                GetComponent<CorvoPathFinder>().nextNode();
+            }
+            else
+            {
+                Debug.Log(destination.y + "-" + curDestination.y + "=" + (destination.y - curDestination.y));
+            }
+        }
+            
 
 		//was last node?
 		if (GetComponent<CorvoPathFinder>().foundPath == null)
 		{
-			if (transform.position.Equals(destination))
+			if (transform.position.x == destination.x && transform.position.z == destination.z  )
             {
                 //arrived
+
+                //임시 주석처리
+                /*
+                if (Mathf.Abs(transform.position.y - destination.y) < 0.1f)
+                {
+                    Debug.Log("도착");
+                    stop();
+                }
+                else
+                {
+                    Debug.Log("도착 직전" + destination.y + "-" + curDestination.y + "=" + (destination.y - curDestination.y));
+                }*/
+
                 stop();
             }
 			else

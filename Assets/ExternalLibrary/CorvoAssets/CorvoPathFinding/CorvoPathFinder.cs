@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using Assets.Scripts.Util;
+using System.Text;
 
 public class CorvoPathFinder:MonoBehaviour
 {
@@ -157,7 +159,8 @@ public class CorvoPathFinder:MonoBehaviour
                 {
                     passibase++;
                     grid[i, j,lev] = null;
-                    Vector3 _startPos = transform.position + Vector3.right * (i - (sX / 2)) * iMultiplicator(i) * nodeWidth + Vector3.forward * (j - (sY / 2)) * jMultiplicator(j) * nodeWidth;
+                    Vector3 _startPos = Vector3Util.GridVector(transform.position + Vector3.right * (i - (sX / 2)) * nodeWidth + Vector3.forward * (j - (sY / 2)) * nodeWidth);
+
                     if (Physics.Raycast(_startPos + _up, -Vector3.up, out _hit, levelHeight * 1.3f, walkMask))
                     {
                         if (prohibiteMask == (prohibiteMask | (1 << _hit.collider.gameObject.layer)))
@@ -191,11 +194,11 @@ public class CorvoPathFinder:MonoBehaviour
                                 grid[i, j, lev] = new GridNode(_hit.point);
                         }
 
-                        if (j > 0)//non sfora a sinistra
+                        if (j > 0) // ¿ÞÂÊÀÌ ¾Æ´Ï¾ß.
                         {
                             if (_diagonal)
                             {
-                                if (i > 0)//non sfora in alto
+                                if (i > 0) // ³ôÀÌ ¿Ã¶ó°¡Áö ¾Ê´Â´Ù.
                                 {
                                     //ALTO SINISTRA
                                     conectGridPoints(grid[i, j, lev], grid[i - 1, j - 1, lev]);
@@ -208,7 +211,7 @@ public class CorvoPathFinder:MonoBehaviour
                                 }
                             }
 
-                            //ALTO
+                            // ³ôÀ½
                             conectGridPoints(grid[i, j, lev], grid[i, j - 1, lev]);
                             if (lev > 0)
                             {
@@ -216,16 +219,14 @@ public class CorvoPathFinder:MonoBehaviour
                                 if (j < sY - 1)
                                     conectGridPoints(grid[i, j, lev], grid[i, j + 1, lev - 1]);
                             }
-
-
                         }
-                        if (i > 0)//non sfora sopra
+                        if (i > 0)// ±×°ÍÀ» ±Øº¹ÇÏÁö ¸øÇÑ´Ù.
                         {
                             if (_diagonal)
                             {
-                                if (j < sY - 1)//non sfora a destra
+                                if (j < sY - 1)//±×°ÍÀº ¿À¸¥ÂÊÀ¸·Î ¿ÀÁö ¾Ê´Â´Ù.
                                 {
-                                    //BASSO SINISTRA
+                                    //¿ÞÂÊ ÇÏ´Ü
                                     conectGridPoints(grid[i, j, lev], grid[i - 1, j + 1, lev]);
                                     if (lev > 0)
                                     {
@@ -263,6 +264,8 @@ public class CorvoPathFinder:MonoBehaviour
                 }
             }
         }
+
+
         if (!Application.isPlaying)
             print("Grid generated. Time needed: " + (Time.time - _startTime));
         generating = false;
@@ -279,14 +282,14 @@ public class CorvoPathFinder:MonoBehaviour
         Vector3 _dir = (b.getPosition() - a.getPosition()).normalized;
         Vector3 _dirNM = new Vector3(_dir.x, 0, _dir.z);
         
-        if (Vector3.Angle(_dir, _dirNM) <= climbAngle)// oppure se la griglia è vicina ad un muro
+        if (Vector3.Angle(_dir, _dirNM) <= climbAngle)// oppure se la griglia ?vicina ad un muro
         {
             //direzione sgombra
             Collider[] _obstacles= Physics.OverlapCapsule(a.getPosition() + Vector3.up * unitRay + Vector3.up * unitStepHeight, b.getPosition() + Vector3.up * unitRay + Vector3.up * unitStepHeight, unitRay, walkMask);
 
             if (_obstacles.Length > 0) return;//PER VERSIONE ACQUISTABILE
             a.addNearNode(b);//si aggiungono a vicenda
-            b.addNearNode(a);//mettere controllo che quello più in basso per caduta è sempre raggiungibile fino ad una certa altezza
+            b.addNearNode(a);//mettere controllo che quello pi?in basso per caduta ?sempre raggiungibile fino ad una certa altezza
         }
     }
 
@@ -294,7 +297,7 @@ public class CorvoPathFinder:MonoBehaviour
     [HideInInspector]
     public GridNode foundPath = null;
 
-    List<GridNode> _discovered = new List<GridNode>();//nodi già controllati
+    List<GridNode> _discovered = new List<GridNode>();//nodi gi?controllati
     GridNode _nearestATALL = null;
     GridNode _nearestToDest = null;
     bool calculating = false;
@@ -339,7 +342,7 @@ public class CorvoPathFinder:MonoBehaviour
             while (_discovered.Count > 0 && haveGrid && !found)
             {
                 //passibase++;
-                if (_nearestToDest != null)//quello esaminato è ogni ciclo il piu vicino
+                if (_nearestToDest != null)//quello esaminato ?ogni ciclo il piu vicino
                 {
                     _nearestToDest.isChecked = true;
                     _discovered.Remove(_nearestToDest);
@@ -375,7 +378,7 @@ public class CorvoPathFinder:MonoBehaviour
                         _nearestToDest = _nuovoNearest;
                     _nearestDistance = Vector3.Distance(_nearestToDest.getPosition(), _destination);
 
-                    if (_nearestDistance < nodeWidth)//è adiacente
+                    if (_nearestDistance < nodeWidth)//?adiacente
                     {
                         found = true;
                     }
@@ -591,18 +594,25 @@ public class CorvoPathFinder:MonoBehaviour
 
 public class GridNode
 {
+    //Vector3Int positionInt;
 	Vector3 position;
 	public GridNode[] nearNodes=new GridNode[0];
     public GridNode previousPathNode = null;
     public GridNode nextPathNode = null;
     public bool isChecked=false;
 
-    public GridNode(Vector3 _pos)
+    public GridNode(Vector3Int _pos)
 	{
-		position=_pos;
+        //positionInt = _pos;
+        position = _pos;
 	}
-	
-	public Vector3 getPosition()
+
+    public GridNode(Vector3 _pos)
+    {
+        position = new Vector3((float)(_pos.x+0.0), _pos.y, (float)(_pos.z+0.0));
+    }
+
+    public Vector3 getPosition()
 	{
 		return position;
     }

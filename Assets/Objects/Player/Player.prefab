@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 4973621305804104}
   - component: {fileID: 95214062960864158}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -430,6 +430,9 @@ GameObject:
   - component: {fileID: 54216683436553730}
   - component: {fileID: 143448729477118960}
   - component: {fileID: 195172962948327270}
+  - component: {fileID: 114508596578038236}
+  - component: {fileID: 114969393933220180}
+  - component: {fileID: 114945138114293228}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1162,7 +1165,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532673606829228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 3, z: 1}
+  m_LocalPosition: {x: 1, y: 2, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4973621305804104}
@@ -1683,7 +1686,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1415514077852466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.682, z: 0}
+  m_LocalPosition: {x: 0, y: 0.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4928934153053434}
@@ -1765,6 +1768,61 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114508596578038236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1532673606829228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f2a9ab14c4cf044913a754ba31a977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114945138114293228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1532673606829228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0015053463550074fb247695e4ab2822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  rotationSpeed: 600
+  updateRotation: 2
+--- !u!114 &114969393933220180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1532673606829228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c6d41f4ac0fc54b819a9c341e42679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeWidth: 2
+  unitRay: 1
+  climbAngle: 15
+  unitStepHeight: 0.5
+  gridSizeX: 40
+  gridSizeY: 40
+  gridLevels: 7
+  levelHeight: 4
+  walkMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  prohibiteMask:
+    serializedVersion: 2
+    m_Bits: 0
+  expansionCoefficient: 50
+  diagonals: 1
+  pathFindingPos: {fileID: 0}
+  processingSpeed: 3
+  testPathDestination: {fileID: 0}
 --- !u!136 &136801141252425812
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1775,7 +1833,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137203842746199426
