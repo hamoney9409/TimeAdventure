@@ -7,9 +7,7 @@ public class DoorOpen1 : MonoBehaviour
     
     int cnt = 0;
     bool isOpen = false; 
-   
-    
-    public void Open()
+   public void Open()
     {
         if (isOpen)
         {
@@ -31,4 +29,6 @@ public class DoorOpen1 : MonoBehaviour
         }
         
     }
+
+
 }
