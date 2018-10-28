@@ -4,7 +4,7 @@ using System.Collections;
 using Assets.Scripts.Util;
 
 [DisallowMultipleComponent]
-[RequireComponent(typeof(NavMeshAgent))]
+//[RequireComponent(typeof(NavMeshAgent))]
 
 public class PlayerMove : MonoBehaviour{
     private Vector3 targetPosition;
@@ -36,20 +36,32 @@ public class PlayerMove : MonoBehaviour{
         MovePlayer();
     }
 
-
     void SetTargetPosition()
     {
-        Plane plane = new Plane(Vector3.up, transform.position);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        float point = 0f;
+        //Plane plane = new Plane(Vector3.up, transform.position);
+        RaycastHit hit;
+        Ray rayFromCamera = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //float point = 0f;
 
-        if (plane.Raycast(ray, out point))
-            targetPosition = ray.GetPoint(point);
+        if (true == (Physics.Raycast(rayFromCamera.origin, rayFromCamera.direction * 10, out hit)))
+        {
+            Vector3 gridPoint = Vector3Util.GridVector(hit.point); // 이동해야할 위치의 x, z좌표
+            Collider selectedObjCollider = hit.collider;
 
-        Vector3Util.GridVectorInplace(ref targetPosition);
+            for (int i=0; i<10; i++)
+            {
+                Ray rayDown = new Ray(gridPoint + Vector3.up * i / 2, Vector3.down * i);
+                if (Physics.Raycast(rayDown, out hit)) // 위로 광선을 쐈는데 터치된 오브젝트에 닿음 
+                {
+                    targetPosition = hit.point;
+                }
+            }
 
-        Debug.Log(targetPosition);
-        unitPathFinder.goTo(targetPosition);
+            Vector3 a = targetPosition;
+            unitPathFinder.goTo(targetPosition);
+
+            //Debug.Log(a + "->" + targetPosition);
+        }
     }
 
     void MovePlayer() {
