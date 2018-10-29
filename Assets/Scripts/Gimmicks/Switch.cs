@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Switch1 : MonoBehaviour
+public class Switch : MonoBehaviour
 {
     int cnt = 0;
     bool isOpen = false;
@@ -17,7 +17,7 @@ public class Switch1 : MonoBehaviour
             {
                 check = 1;
                 Door.GetComponent<AudioSource>().Play();
-                Door.GetComponent<DoorOpen1>().Open();
+                Door.GetComponent<DoorOpen>().Triggered();
             }
             else return;
         }
