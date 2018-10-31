@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Assets.Scripts.Util;
 using System.Text;
+using Jint.Parser;
 
 public class CorvoPathFinder:MonoBehaviour
 {
@@ -159,7 +160,7 @@ public class CorvoPathFinder:MonoBehaviour
                 {
                     passibase++;
                     grid[i, j,lev] = null;
-                    Vector3 _startPos = Vector3Util.GridVector(transform.position + Vector3.right * (i - (sX / 2)) * nodeWidth + Vector3.forward * (j - (sY / 2)) * nodeWidth);
+                    Vector3 _startPos = Vector3Util.GridVector(Vector3Util.GridVector(transform.position) + Vector3.right * (i - (sX / 2)) * nodeWidth + Vector3.forward * (j - (sY / 2)) * nodeWidth);
 
                     if (Physics.Raycast(_startPos + _up, -Vector3.up, out _hit, levelHeight * 1.3f, walkMask))
                     {
@@ -297,7 +298,7 @@ public class CorvoPathFinder:MonoBehaviour
     [HideInInspector]
     public GridNode foundPath = null;
 
-    List<GridNode> _discovered = new List<GridNode>();//nodi gi?controllati
+    Queue<GridNode> _discovered = new Queue<GridNode>();//nodi gi?controllati
     GridNode _nearestATALL = null;
     GridNode _nearestToDest = null;
     bool calculating = false;
@@ -308,16 +309,16 @@ public class CorvoPathFinder:MonoBehaviour
         while (!haveGrid)
             yield return new WaitForSeconds(Random.Range(0.01f, 0.07f));
 
-        float DeltaDistX = Mathf.Abs(sX/2 *iMultiplicator(0) * nodeWidth);
-        float DeltaDistY = Mathf.Abs(sY/2 * jMultiplicator(0) * nodeWidth);
+        float DeltaDistX = Mathf.Abs(sX / 2 * nodeWidth);
+        float DeltaDistY = Mathf.Abs(sY / 2 * nodeWidth);
 
-        if (_destination.x > transform.position.x+DeltaDistX)
-            _destination = new Vector3(transform.position.x+DeltaDistX, _destination.y, _destination.z);
+        if (_destination.x > transform.position.x + DeltaDistX)
+            _destination = new Vector3(transform.position.x + DeltaDistX, _destination.y, _destination.z);
         else if (_destination.x < transform.position.x - DeltaDistX)
-            _destination = new Vector3(transform.position.x-DeltaDistX, _destination.y, _destination.z);
+            _destination = new Vector3(transform.position.x - DeltaDistX, _destination.y, _destination.z);
 
         if (_destination.z > transform.position.z + DeltaDistY)
-            _destination = new Vector3(_destination.x, _destination.y, transform.position.z+DeltaDistY);
+            _destination = new Vector3(_destination.x, _destination.y, transform.position.z + DeltaDistY);
         else if (_destination.z < transform.position.z - DeltaDistY)
             _destination = new Vector3(_destination.x, _destination.y, transform.position.z - DeltaDistY);
 
@@ -330,87 +331,70 @@ public class CorvoPathFinder:MonoBehaviour
             else
                 _pos = transform.position;
         }
-        GridNode _firstNode = nearestNode(_pos);
-        
-        if (_firstNode!=null)
+
+        GridNode[] _nearestNode = nearestNode(_pos);
+
+        GridNode _firstNode = new GridNode(_pos);
+        _firstNode.nearNodes = _nearestNode;
+        _firstNode.isChecked = true;
+
+        if (0 < _nearestNode.Length)
         {
-            _nearestToDest = _nearestATALL = _firstNode;
-            _discovered.Add(_firstNode);
+            _nearestToDest = _firstNode;
 
-            bool found = false;
+            _discovered.Enqueue(_firstNode);
+            float _nearestToDestDist = Mathf.Infinity;
+
+
+            ///GridNode currentNode = _firstNode;
+
+            while (0 < _discovered.Count)
+            {
+                GridNode currentNode = _discovered.Dequeue();
+
+                float toDestDist = Vector2.Distance(new Vector2(currentNode.getPosition().x, currentNode.getPosition().z),
+                    new Vector2(_destination.x, _destination.z));
+
+                if (toDestDist < _nearestToDestDist)
+                {
+                    _nearestToDestDist = toDestDist;
+                    _nearestToDest = currentNode;
+                }
+
+                foreach (GridNode _adiacente in currentNode.nearNodes)
+                {
+                    if (_adiacente.isChecked)
+                        continue;
+                    
+                    _adiacente.isChecked = true;
+                    
+                    _adiacente.previousPathNode = currentNode;
+                    _discovered.Enqueue(_adiacente);
+                   
+                    //currentNode
+                }
+            }
+
+            _nearestATALL = _nearestToDest;
+
+            // 찾은 길 후처리
+            
+            // 꼬리처럼 매달려 있는 previousPathNode들에게 nextPathNode 값 정의
+            for (GridNode node = _nearestATALL; node != null; node = node.previousPathNode)
+            {
+                if (node.previousPathNode == null || node.previousPathNode == _firstNode) // 꼬리 없음
+                {
+                    node.previousPathNode = null;
+                    foundPath = node;
+                    break;
+                }
+
+                node.previousPathNode.nextPathNode = node;
+            }
+
+            _havePath = foundPath != null;
+
             //int passibase = 0, maxPassi = setMaxPassi();
-            while (_discovered.Count > 0 && haveGrid && !found)
-            {
-                //passibase++;
-                if (_nearestToDest != null)//quello esaminato ?ogni ciclo il piu vicino
-                {
-                    _nearestToDest.isChecked = true;
-                    _discovered.Remove(_nearestToDest);
-                    float _nearestDistance = Vector3.Distance(_nearestToDest.getPosition(), _destination);
-                    GridNode _nuovoNearest = _nearestToDest;
-                    foreach (GridNode _adiacente in _nearestToDest.nearNodes)
-                    {
-                        if (!_adiacente.isChecked)//non esaminato ancora
-                        {
-                            if (_adiacente.previousPathNode == null)
-                            {
-                                _discovered.Add(_adiacente);
-                                _adiacente.previousPathNode = _nearestToDest;
-                            }
-                            if (Vector3.Distance(_adiacente.getPosition(), _destination) < _nearestDistance)
-                            {
-                                _nearestDistance = Vector3.Distance(_adiacente.getPosition(), _destination);
-                                _nuovoNearest = _adiacente;
-                            }
-                        }
-                        //CHECK E' ABBASTANZA VICINO
-                    }
-                    if (_nearestToDest == _nuovoNearest)//se nessuno di loro era piu vicino
-                    {
-                        if (_discovered.Count > 0)
-                        {
-                            _nearestToDest = _discovered[Random.Range(0, _discovered.Count)];//uno a caso
-                                                                                             // _nearestToDest = _discovered[_discovered.Count-1];//l'ultimo trovato
-                        }
-
-                    }
-                    else
-                        _nearestToDest = _nuovoNearest;
-                    _nearestDistance = Vector3.Distance(_nearestToDest.getPosition(), _destination);
-
-                    if (_nearestDistance < nodeWidth)//?adiacente
-                    {
-                        found = true;
-                    }
-                    if (_nearestDistance < Vector3.Distance(_nearestATALL.getPosition(), _destination))
-                        _nearestATALL = _nearestToDest;
-
-
-/*
-                    if (passibase > maxPassi*5)
-                    {
-                        //print("Generate grid stop; FPS: " + Corvotools.getMainCamera().getFPS());
-                        passibase = 0;
-						if (Application.isPlaying)
-							yield return null;
-                        //yield return new WaitForSeconds(Time.fixedDeltaTime);
-                    }*/
-                }
-            }
-            //termina
-            GridNode _previous = _nearestATALL;
-            while (_previous != null)
-            {
-                if (_previous.previousPathNode != null)
-                {
-                    _previous.previousPathNode.nextPathNode = _previous;
-                    foundPath = _previous.previousPathNode;
-                }
-                _previous = _previous.previousPathNode;
-            }
-            _discovered.Clear();
-			if (foundPath!=null)
-            	_havePath = true;
         }
         else
         {
@@ -564,29 +548,49 @@ public class CorvoPathFinder:MonoBehaviour
     }
 
 
-    public GridNode nearestNode(Vector3 _pos)
+    public GridNode[] nearestNode(Vector3 _pos)
     {
         GridNode _nearest = null;
-        float _distance = Mathf.Infinity;
+        List<GridNode> _similarDistNodes = new List<GridNode>();
+        float _nearestDist = Mathf.Infinity;
         foreach(GridNode _node in grid)
         {
             /*
             if (_node == grid[sX / 2, sY / 2,gridLevels/2])
                 continue;*/
-            if (_node!=null)
+            if (_node==null)
             {
-                if (_node.nearNodes.Length>0)
-                {
-                    float _dist = Vector3.Distance(_pos, _node.getPosition());
-                    if (_dist < _distance)
-                    {
-                        _distance = _dist;
-                        _nearest = _node;
-                    }
-                }
+                continue;
             }
+            if (_node.nearNodes.Length <= 0)
+            {
+                continue;
+            }
+        
+            float _dist = Vector2.Distance(
+                new Vector2(_pos.x, _pos.z), 
+                new Vector2(_node.getPosition().x, _node.getPosition().z));
+            if (0.0001 < _dist - _nearestDist)
+            {
+                continue;
+            }
+
+            if (_nearestDist - _dist < 0.0001)
+            {
+                _similarDistNodes.Push(_node);
+                continue;
+            }
+            
+            _nearestDist = _dist;
+            _nearest = _node;
+            _similarDistNodes.Clear();
+
         }
-        return _nearest;
+
+        if (_nearest != null)
+           _similarDistNodes.Push(_nearest);
+
+        return _similarDistNodes.ToArray();
     }
 
 }

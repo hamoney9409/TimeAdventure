@@ -96,7 +96,7 @@ public class UnitPathfinder:MonoBehaviour
         if (transform.position.x == curDestination.x && transform.position.z == curDestination.z)
 
         {
-            if (Mathf.Abs(transform.position.y - curDestination.y) < 0.2f)
+            if (Mathf.Abs(transform.position.y - curDestination.y) < 0.1f)
             {
                 GetComponent<CorvoPathFinder>().nextNode();
             }

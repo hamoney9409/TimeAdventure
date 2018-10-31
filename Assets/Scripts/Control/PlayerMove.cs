@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour{
     const int LEFT_MOUSE_BUTTON = 0;
     const int CHILDID_MODEL = 0;
 
+    public bool pathFindingTest = false;
+
     //NavMeshAgent agent;
     UnitPathfinder unitPathFinder;
     Animation anim;
@@ -25,7 +27,6 @@ public class PlayerMove : MonoBehaviour{
 
     void Start() {
         targetPosition = transform.position;
-        unitPathFinder.goTo(new Vector3(17, 2, 13));
     }
 
 
@@ -58,8 +59,17 @@ public class PlayerMove : MonoBehaviour{
             }
 
             Vector3 a = targetPosition;
-            unitPathFinder.goTo(targetPosition);
 
+            if (!pathFindingTest)
+            {
+                unitPathFinder.goTo(targetPosition);
+            }
+            else
+            {
+                GetComponent<CorvoPathFinder>().findPath(targetPosition);
+            }
+            
+            
             //Debug.Log(a + "->" + targetPosition);
         }
     }
