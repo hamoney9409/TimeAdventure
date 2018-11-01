@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    int cnt = 0;
     bool isOpen = false;
     int check = 0;
     public GameObject Door;
