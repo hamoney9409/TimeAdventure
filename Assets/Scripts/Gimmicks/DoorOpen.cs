@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
 {
+    public int openSpeed = 4;
+    enum ActionState { closed, opened, opening };
+    ActionState actionState = ActionState.closed;
 
-    enum NowBehavior { closed, opened, opening };
-    NowBehavior now = NowBehavior.closed;
-
-    private void goDown()
+    private void doorClosing()
     {
-        transform.position += Vector3.down * Time.deltaTime * 4;
+        transform.position += Vector3.down * Time.deltaTime * openSpeed;
     }
 
     IEnumerator Delaying()
     {
         while (true)
         {
-            goDown();
+            doorClosing();
             yield return new WaitForEndOfFrame();
         }
             
@@ -26,7 +26,7 @@ public class DoorOpen : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         StopCoroutine("Delaying");
-        now = NowBehavior.opened;
+        actionState = ActionState.opened;
         Destroy(gameObject);
     }
 
@@ -35,37 +35,31 @@ public class DoorOpen : MonoBehaviour
 
         while (true)
         {
-            if (now == NowBehavior.closed)
+            switch (actionState)
             {
-                yield return null;
-                now = NowBehavior.opening;
+                case ActionState.closed:
+                    yield return null;
+                    actionState = ActionState.opening;
+                    break;
+                case ActionState.opening:
+                    StartCoroutine("Delaying");
+                    StartCoroutine("StopDelaying");
+                    break;
             }
-            else if (now == NowBehavior.opening)
-            {
-                StartCoroutine("Delaying");
-                StartCoroutine("StopDelaying");
-                break;
-            }
-            
-         
         }
-
-        
-        
     }
 
     
     public void Triggered()
     {
-        if (now == NowBehavior.closed)
+        switch (actionState)
         {
-            StartCoroutine("Open");
+            case ActionState.closed:
+                break;
+            default:
+                return;
         }
-        else
-        {
-            return;
-        }
+
+        StartCoroutine("Open");
     }
-
-
 }
