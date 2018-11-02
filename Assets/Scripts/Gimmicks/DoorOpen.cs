@@ -8,7 +8,7 @@ public class DoorOpen : MonoBehaviour
     enum ActionState { closed, opened, opening };
     ActionState actionState = ActionState.closed;
 
-    private void doorClosing()
+    private void doorOpening()
     {
         transform.position += Vector3.down * Time.deltaTime * openSpeed;
     }
@@ -17,7 +17,7 @@ public class DoorOpen : MonoBehaviour
     {
         while (true)
         {
-            doorClosing();
+            doorOpening();
             yield return new WaitForEndOfFrame();
         }
             
