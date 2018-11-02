@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 301402754}
   - component: {fileID: 301402753}
   - component: {fileID: 301402752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Teleporter Pad A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6441,7 +6441,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh45908
+  m_Name: pb_Mesh21214
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -6785,7 +6785,7 @@ GameObject:
   - component: {fileID: 771426583}
   - component: {fileID: 771426582}
   - component: {fileID: 771426581}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14845,7 +14845,7 @@ GameObject:
   - component: {fileID: 2136748746}
   - component: {fileID: 2136748745}
   - component: {fileID: 2136748744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Teleporter Pad B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
