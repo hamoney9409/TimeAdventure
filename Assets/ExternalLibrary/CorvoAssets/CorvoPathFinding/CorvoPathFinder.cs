@@ -7,7 +7,7 @@ using Jint.Parser;
 
 public class CorvoPathFinder:MonoBehaviour
 {
-	public float nodeWidth=1.5f;
+	public float nodeWidth=2f;
     [Range(0.02f, 9000)]
     public float unitRay = 1f;
     [Range(0,90)]
@@ -61,8 +61,9 @@ public class CorvoPathFinder:MonoBehaviour
 
     public bool havePath()
     {
-        return _havePath;
+        return foundPath != null;
 	}
+
 	public void nextNode()
 	{
 		foundPath = foundPath.nextPathNode;
@@ -104,7 +105,7 @@ public class CorvoPathFinder:MonoBehaviour
 	public void clearPath()
 	{
 		foundPath = null;
-		_havePath = false;
+		//_havePath = false;
 		_nearestATALL = _nearestToDest = null;
 		_discovered.Clear();
 	}
@@ -302,7 +303,7 @@ public class CorvoPathFinder:MonoBehaviour
     GridNode _nearestATALL = null;
     GridNode _nearestToDest = null;
     bool calculating = false;
-    bool _havePath = false;
+    //bool _havePath = false;
     IEnumerator calculatePath(Vector3 _destination, Vector3 _pos, Transform _updatePos = null)
     {
         generateGrid();
@@ -392,13 +393,13 @@ public class CorvoPathFinder:MonoBehaviour
                 node.previousPathNode.nextPathNode = node;
             }
 
-            _havePath = foundPath != null;
+            //_havePath = foundPath != null;
 
             //int passibase = 0, maxPassi = setMaxPassi();
         }
         else
         {
-            _havePath = false;
+            //_havePath = false;
             if (!Application.isPlaying)
                 print("No path found!");
         }
