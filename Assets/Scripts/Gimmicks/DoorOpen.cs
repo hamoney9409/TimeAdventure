@@ -24,7 +24,7 @@ public class DoorOpen : MonoBehaviour
     }
     IEnumerator StopDelaying()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1); // ???
         StopCoroutine("Delaying");
         actionState = ActionState.opened;
         Destroy(gameObject);
@@ -32,8 +32,8 @@ public class DoorOpen : MonoBehaviour
 
     IEnumerator Open()
     {
-
-        while (true)
+        bool loop = true;
+        while (loop)
         {
             switch (actionState)
             {
@@ -44,6 +44,7 @@ public class DoorOpen : MonoBehaviour
                 case ActionState.opening:
                     StartCoroutine("Delaying");
                     StartCoroutine("StopDelaying");
+                    loop = false;
                     break;
             }
         }
@@ -60,6 +61,9 @@ public class DoorOpen : MonoBehaviour
                 return;
         }
 
+        Debug.Log(actionState);
         StartCoroutine("Open");
+        Debug.Log(actionState);
+        actionState = ActionState.opening;
     }
 }
