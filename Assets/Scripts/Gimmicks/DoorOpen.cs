@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorOpen : MonoBehaviour
 {
     public int openSpeed = 4;
+    public int operatingTime = 1;
     enum ActionState { closed, opened, opening };
     ActionState actionState = ActionState.closed;
 
@@ -15,18 +16,24 @@ public class DoorOpen : MonoBehaviour
 
     IEnumerator Delaying()
     {
+        //Debug.Log("딜레이"+ actionState);
         while (true)
         {
             doorOpening();
             yield return new WaitForEndOfFrame();
-        }
-            
+        } 
     }
     IEnumerator StopDelaying()
     {
-        yield return new WaitForSeconds(1); // ???
+        yield return new WaitForSeconds(operatingTime);     
         StopCoroutine("Delaying");
         actionState = ActionState.opened;
+        StartCoroutine("Erasing");
+    }
+    
+    IEnumerator Erasing()
+    {
+        yield return new WaitUntil(() => actionState == ActionState.opened);
         Destroy(gameObject);
     }
 
@@ -61,9 +68,8 @@ public class DoorOpen : MonoBehaviour
                 return;
         }
 
-        Debug.Log(actionState);
         StartCoroutine("Open");
-        Debug.Log(actionState);
-        actionState = ActionState.opening;
+        //actionState = ActionState.opening;
+
     }
 }
