@@ -180,6 +180,7 @@ public class CorvoPathFinder:MonoBehaviour
                                 break;
                         }
 
+                        TestVector(_hit.point);
 
                         if (lev == 0)
                             grid[i, j, lev] = new GridNode(_hit.point);
@@ -273,13 +274,36 @@ public class CorvoPathFinder:MonoBehaviour
         generating = false;
         haveGrid = true;
     }
-    
-	
+
+    static public void TestVector(GridNode node)
+    {
+        TestVector(node.getPosition());
+    }
+
+    static public void TestVector( Vector3 vec)
+    {
+        float x_div = (vec.x + 1) / 2;
+        x_div = x_div - (int)x_div;
+        float y_div = (vec.y + 1) / 2;
+        y_div = y_div - (int)y_div;
+
+        if (0.05 < x_div && x_div < 0.95)
+        {
+            if (0.05 < y_div && y_div < 0.95)
+            {
+                Debug.Log(vec);
+            }
+        }
+
+    }
 
     public void conectGridPoints(GridNode a, GridNode b)
     {
         if (a == null || b == null)
             return;
+;
+        TestVector(a);
+        TestVector(b);
 
         Vector3 _dir = (b.getPosition() - a.getPosition()).normalized;
         Vector3 _dirNM = new Vector3(_dir.x, 0, _dir.z);
@@ -606,16 +630,17 @@ public class GridNode
     public GridNode nextPathNode = null;
     public bool isChecked=false;
 
+
+    public GridNode(Vector3 _pos)
+    {
+        position = new Vector3((float)(_pos.x + 0.0), _pos.y, (float)(_pos.z + 0.0));
+    }
+
     public GridNode(Vector3Int _pos)
 	{
         //positionInt = _pos;
         position = _pos;
 	}
-
-    public GridNode(Vector3 _pos)
-    {
-        position = new Vector3((float)(_pos.x+0.0), _pos.y, (float)(_pos.z+0.0));
-    }
 
     public Vector3 getPosition()
 	{
@@ -628,6 +653,7 @@ public class GridNode
 
     public void addNearNode(GridNode _node)
     {
+        CorvoPathFinder.TestVector(_node);
         GridNode[] _temp = new GridNode[nearNodes.Length + 1];
         for (int _x = 0; _x < nearNodes.Length; _x++)
             _temp[_x] = nearNodes[_x];

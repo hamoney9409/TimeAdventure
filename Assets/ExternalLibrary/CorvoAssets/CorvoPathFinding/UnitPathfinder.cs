@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using Assets.Scripts.Util;
 
 public class UnitPathfinder:MonoBehaviour
 {
@@ -11,11 +12,29 @@ public class UnitPathfinder:MonoBehaviour
 	
 	//altro
 	Vector3 destination;
-	
+    private Vector3 afterMovePosition; // 중간에 transform.position이 변경됬으면 이동을 중단시키기 위한 변수
+
 	bool mustMove=true;
 	float  pathRefreshTime=0;
+
+    void Start()
+    {
+        UpdateafterMovePosition();
+    }
+
+    void UpdateafterMovePosition()
+    {
+        afterMovePosition = transform.position;
+    }
+
     void FixedUpdate()
     {
+        if (!Vector3Util.IsAlmostEquals(transform.position, afterMovePosition))
+        {
+            stop();
+            return;
+        }
+
 		CorvoPathFinder pf=GetComponent<CorvoPathFinder>();
 		if (destinationActive)
 		{
@@ -46,23 +65,20 @@ public class UnitPathfinder:MonoBehaviour
 
                         if (Vector3.Distance(transform.position, pf.getDestination() ) < Time.deltaTime * moveSpeed)
                         {
-                            //transform.position = new Vector3((int)pf.getDestination().x, (int)pf.getDestination().y, (int)pf.getDestination().z);
                             transform.position = pf.getDestination();
-                            //transform.position.Set(pf.getDestination().x, pf.getDestination().y, pf.getDestination().z);
-                            //Debug.Log(pf.getDestination());
-                            //Debug.Log(transform.position);
                         }
                         else
                         {
                             transform.position = Vector3.MoveTowards(transform.position, pf.getDestination(), Time.deltaTime * moveSpeed);
                         }
 
-                    }
+					    UpdateafterMovePosition();
+					}
 				}
 			}
 			else
-			{
-				Debug.LogError("No PathFinder Assigned! please assign component CorvopathFinder to this object.",gameObject);
+            {
+                Debug.LogError("No PathFinder Assigned! please assign component CorvopathFinder to this object.",gameObject);
 			}
 		}
 	}
@@ -70,7 +86,9 @@ public class UnitPathfinder:MonoBehaviour
 	bool destinationActive=false;
 	public void goTo(Vector3 _dest)//Start moving to position following pest path
 	{
-		destinationActive=true;
+	    UpdateafterMovePosition();
+
+        destinationActive =true;
 		destination=_dest;
 		updatePath();
 	}
@@ -93,39 +111,20 @@ public class UnitPathfinder:MonoBehaviour
     {
         Vector3 curDestination = GetComponent<CorvoPathFinder>().getDestination();
         //if (GetComponent<CorvoPathFinder>().getDestination().Equals(transform.position) )
-        if (transform.position.x == curDestination.x && transform.position.z == curDestination.z)
-
+        if (Vector3Util.IsXZAlmostEquals(transform.position, curDestination))
         {
             if (Mathf.Abs(transform.position.y - curDestination.y) < 0.1f)
             {
                 GetComponent<CorvoPathFinder>().nextNode();
             }
-            else
-            {
-                Debug.Log(destination.y + "-" + curDestination.y + "=" + (destination.y - curDestination.y));
-            }
         }
-            
-
+        
 		//was last node?
 		if (GetComponent<CorvoPathFinder>().foundPath == null)
 		{
-			if (transform.position.x == destination.x && transform.position.z == destination.z  )
+		    
+            if (Vector3Util.IsXZAlmostEquals(transform.position, destination))
             {
-                //arrived
-
-                //임시 주석처리
-                /*
-                if (Mathf.Abs(transform.position.y - destination.y) < 0.1f)
-                {
-                    Debug.Log("도착");
-                    stop();
-                }
-                else
-                {
-                    Debug.Log("도착 직전" + destination.y + "-" + curDestination.y + "=" + (destination.y - curDestination.y));
-                }*/
-
                 stop();
             }
 			else
@@ -133,7 +132,6 @@ public class UnitPathfinder:MonoBehaviour
                 //not arrived yet
                 updatePath();
             }
-				
 		}
     }
 }

@@ -1,9 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Runtime.ConstrainedExecution;
+using UnityEngine;
 
 namespace Assets.Scripts.Util
 {
     class Vector3Util
     {
+        public const float APPROXIMATE_VALUE = 0.00001f;
+        static public bool IsAlmostEquals(Vector3 lhs, Vector3 rhs)
+        {
+            return Mathf.Abs(lhs.x - rhs.x) < APPROXIMATE_VALUE
+                   && Mathf.Abs(lhs.y - rhs.y) < APPROXIMATE_VALUE
+                   && Mathf.Abs(lhs.z - rhs.z) < APPROXIMATE_VALUE;
+        }
+
+        static public bool IsXZAlmostEquals(Vector3 lhs, Vector3 rhs)
+        {
+            return Mathf.Abs(lhs.x - rhs.x) < APPROXIMATE_VALUE
+                   && Mathf.Abs(lhs.z - rhs.z) < APPROXIMATE_VALUE;
+        }
+
         static public Vector3 GridVector(Vector3 vec)
         {
             GridVectorInplace(ref vec);

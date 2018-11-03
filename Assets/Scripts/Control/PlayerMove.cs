@@ -48,13 +48,21 @@ public class PlayerMove : MonoBehaviour{
         {
             Vector3 gridPoint = Vector3Util.GridVector(hit.point); // 이동해야할 위치의 x, z좌표
             Collider selectedObjCollider = hit.collider;
+            GameObject obj = hit.collider.gameObject;
 
-            for (int i=0; i<10; i++)
             {
-                Ray rayDown = new Ray(gridPoint + Vector3.up * i / 2, Vector3.down * i);
-                if (Physics.Raycast(rayDown, out hit)) // 위로 광선을 쐈는데 터치된 오브젝트에 닿음 
+                int j = 1;
+                for (int i = 0; i < 10; i++)
                 {
-                    targetPosition = hit.point;
+                    Ray rayDown = new Ray(gridPoint + Vector3.up * j / 2, Vector3.down * j);
+
+                    if (selectedObjCollider.Raycast(rayDown, out hit, j))
+                    //if (Physics.Raycast(rayDown, out hit)) // 위로 광선을 쐈는데 터치된 오브젝트에 닿음 
+                    {
+                        targetPosition = hit.point;
+                    }
+
+                    j *= 2;
                 }
             }
 
