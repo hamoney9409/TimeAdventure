@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections;
 using Assets.Scripts.Util;
 
+
 [DisallowMultipleComponent]
 //[RequireComponent(typeof(NavMeshAgent))]
 
@@ -13,27 +14,39 @@ public class PlayerMove : MonoBehaviour{
     const int CHILDID_MODEL = 0;
 
     public bool pathFindingTest = false;
+    public AnimationClip idle;
+    public AnimationClip walk;
+
+    Animation anim;
+
+
+    Vector3 gridPosition;
 
     //NavMeshAgent agent;
     UnitPathfinder unitPathFinder;
-    Animation anim;
 
     void Awake()
     {
         //agent = GetComponent<NavMeshAgent>();
         unitPathFinder = GetComponent<UnitPathfinder>();
-        anim = transform.GetChild(CHILDID_MODEL).GetComponent<Animation>();
+        
     }
 
     void Start() {
+
+        anim = GetComponent<Animation>();
+
         targetPosition = transform.position;
     }
 
 
     void Update(){
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButton(0))
+        {
             SetTargetPosition();
+            
         }
+
         MovePlayer();
     }
 
@@ -49,6 +62,8 @@ public class PlayerMove : MonoBehaviour{
             Vector3 gridPoint = Vector3Util.GridVector(hit.point); // 이동해야할 위치의 x, z좌표
             Collider selectedObjCollider = hit.collider;
             GameObject obj = hit.collider.gameObject;
+
+            gridPosition = gridPoint;
 
             {
                 int j = 1;
@@ -84,5 +99,20 @@ public class PlayerMove : MonoBehaviour{
 
     void MovePlayer() {
         //agent.SetDestination(targetPosition);
+
+
+        if (Vector3.Distance(gridPosition, transform.position) <= 0.01)
+        {
+            anim.Play("idle");
+            
+        }
+        else {
+            anim.Play("walk");
+        }
+
+        if (!anim.isPlaying)
+        {
+            anim.Play();
+        }
     }
 }

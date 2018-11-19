@@ -5,6 +5,8 @@ using UnityEngine;
 public class SubPlayer : MonoBehaviour{
 
     public int Speed;
+    public AnimationClip walk;
+    public Animation anim;
 
     private Vector3 vec;
     private int count = 0;
@@ -14,14 +16,15 @@ public class SubPlayer : MonoBehaviour{
     // Use this for initialization
     void Start(){
 
-        Animation ani = gameObject.GetComponent<Animation>();
-        ani.Play("walk");
+        anim = GetComponent<Animation>();
+        
     }
 
     // Update is called once per frame
     void Update(){
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-
+        anim.clip = walk;
+        anim.Play();
     }
 
     private void OnTriggerEnter(Collider other){

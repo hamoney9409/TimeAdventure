@@ -19,9 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4616673309326380}
-  - component: {fileID: 114138944552256770}
   - component: {fileID: 114554346619080426}
-  - component: {fileID: 114981950290876880}
   - component: {fileID: 20172180986044588}
   - component: {fileID: 124237301068181652}
   - component: {fileID: 81232034014192136}
@@ -38,13 +36,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1096322791674880}
-  m_LocalRotation: {x: 0.3453823, y: -0.35493642, z: 0.14306195, w: 0.85689235}
-  m_LocalPosition: {x: 7.04, y: 10.06, z: -4.14}
+  m_LocalRotation: {x: 0.45139772, y: -0.29044667, z: 0.03212959, w: 0.8431183}
+  m_LocalPosition: {x: 5.01, y: 12.45, z: -3.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 43.905003, y: -45.000004, z: 0}
+  m_LocalEulerAnglesHint: {x: 51.245003, y: -47.395, z: -19.410002}
 --- !u!20 &20172180986044588
 Camera:
   m_ObjectHideFlags: 1
@@ -54,7 +52,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.1957547, g: 0.3140723, b: 0.5, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -88,19 +86,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1096322791674880}
   m_Enabled: 1
---- !u!114 &114138944552256770
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1096322791674880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e529b64d92450634e81067ecc4acbe5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileSet_A: {fileID: 0}
-  tileSet_B: {fileID: 0}
 --- !u!114 &114554346619080426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,17 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
---- !u!114 &114981950290876880
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1096322791674880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed5a2d0d1efa9140859ab480f4a3d56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!124 &124237301068181652
 Behaviour:
   m_ObjectHideFlags: 1
