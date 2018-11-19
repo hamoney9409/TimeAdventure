@@ -27,24 +27,26 @@ namespace Assets.Scripts.Util
 
         static public Vector3 GridVectorInplace(ref Vector3 vec)
         {
-            vec.x = (int)vec.x;
-            vec.z = (int)vec.z;
+            int intVecX = (int)(vec.x / 2);
+            int intVecZ = (int)(vec.z / 2);
 
-            if (vec.x % 2 == 0 && vec.z % 2 == 0)
-            {
-                vec.x = vec.x + 1;
-                vec.z = vec.z + 1;
-            }
+            if (vec.x < 0)
+                intVecX -= 1;
+            if (vec.z < 0)
+                intVecZ -= 1;
 
-            else if (vec.x % 2 == 1 && vec.z % 2 == 0)
-            {
-                vec.z = vec.z + 1;
-            }
-
-            else if (vec.x % 2 == 0 && vec.z % 2 == 1)
-            {
-                vec.x = vec.x + 1;
-            }
+            // -2.5 -> -1.25 -> -1 -> -2 => -3
+            // -1.5 -> -0.75 -> 0 -> -1 => -1
+            // -0.5 -> -0.25 -> 0 -> -1 => -1
+            // 0.5 -> 0.25 -> 0 => 1
+            // 1 -> 0.5 -> 0 => 1
+            // 1.5 -> 0.75 -> 0 => 1
+            // 2.5 -> 1.25 -> 1 => 3
+            // 3 -> 1.5 -> 1 => 3
+            // 3.5 -> 1.75 -> 1 => 3
+            // 4.5 -> 2.25 -> 2 => 5
+            vec.x = (1 + (intVecX * 2));
+            vec.z = (1 + (intVecZ * 2));
 
             return vec;
         }
