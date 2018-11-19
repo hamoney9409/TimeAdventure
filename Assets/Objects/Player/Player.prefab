@@ -1806,7 +1806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeWidth: 2
-  unitRay: 1
+  unitRay: 0.5
   climbAngle: 15
   unitStepHeight: 0.5
   gridSizeX: 40
