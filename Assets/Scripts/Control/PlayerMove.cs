@@ -103,11 +103,13 @@ public class PlayerMove : MonoBehaviour{
 
         if (Vector3.Distance(gridPosition, transform.position) <= 0.01)
         {
-            anim.Play("idle");
+            anim.clip = idle;
+            anim.Play();
             
         }
         else {
-            anim.Play("walk");
+            anim.clip = walk;
+            anim.Play();
         }
 
         if (!anim.isPlaying)

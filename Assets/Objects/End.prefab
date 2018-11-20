@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 33261759514997580}
   - component: {fileID: 114090164545011016}
   - component: {fileID: 64269906079455618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: End
   m_TagString: End
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1164312686104202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 4, z: 7}
+  m_LocalPosition: {x: 13.5, y: 11, z: 65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32278f17d62382d44b256c97df7e12c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 
+  nextScene: Scene_121
 --- !u!114 &114090164545011016
 MonoBehaviour:
   m_ObjectHideFlags: 1

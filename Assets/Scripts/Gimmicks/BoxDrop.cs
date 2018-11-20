@@ -14,7 +14,7 @@ public class BoxDrop : MonoBehaviour {
     void Drop()
     {
         isDrop = true;
-        GameObject.Find("tree03").GetComponent<AudioSource>().Play();
+        //GameObject.Find("tree03").GetComponent<AudioSource>().Play();
         Destroy(Box,1);
     }
 }

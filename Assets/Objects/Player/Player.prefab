@@ -1167,7 +1167,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532673606829228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.44, y: 3, z: -2}
+  m_LocalPosition: {x: -5, y: 3, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4973621305804104}
@@ -1816,6 +1816,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathFindingTest: 0
+  idle: {fileID: 7400000, guid: 0702f9126b203db4a987a4debb074c60, type: 3}
+  walk: {fileID: 7400002, guid: 0702f9126b203db4a987a4debb074c60, type: 3}
 --- !u!114 &114945138114293228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1843,7 +1845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeWidth: 2
   unitRay: 0.5
-  climbAngle: 15
+  climbAngle: 45
   unitStepHeight: 0.5
   gridSizeX: 40
   gridSizeY: 40

@@ -15,7 +15,7 @@ public class Switch : MonoBehaviour
             if (check == 0)
             {
                 check = 1;
-                Door.GetComponent<AudioSource>().Play();
+                //Door.GetComponent<AudioSource>().Play();
                 Door.GetComponent<DoorOpen>().Triggered();
             }
             else return;
