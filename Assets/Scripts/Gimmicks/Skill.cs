@@ -2,39 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill : MonoBehaviour {
+public class Skill : MonoBehaviour
+{
 
-	public GameObject tileSet_A;
-	public GameObject tileSet_B;
+    public GameObject tileSet_A;    //1번째 지형
+    public GameObject tileSet_B;    // 2번째 지형
+
+    public GameObject hazard_A;     // 1번지형에서 닿으면 스킬발동 안되는곳
+    public GameObject hazard_B;     // 2번지형에서 닿으면 스킬발동 안되는곳
+
+    private bool check;
 
 
-
-	void Start(){
-
+    void Start()
+    {
         tileSet_A = GameObject.FindWithTag("tileSet_A");
         tileSet_B = GameObject.FindWithTag("tileSet_B");
 
-        tileSet_A.SetActive (true);
-		tileSet_B.SetActive (false);
-	}
-		
-	public void TimeSkill(){
-        Debug.Log(tileSet_A);
-		if (tileSet_A.activeSelf == true) {	// A -> B
 
-			tileSet_B.SetActive (true);
-			tileSet_A.SetActive (false);
+        tileSet_A.SetActive(true);
+        tileSet_B.SetActive(false);
 
-		
-		}
+        hazard_A.SetActive(false);
+        hazard_B.SetActive(true);
+    }
 
-		else if (tileSet_B.activeSelf == true) {	// B -> A
+    void Update()
+    {
 
-			tileSet_A.SetActive (true);
-			tileSet_B.SetActive (false);
+    }
 
-		
-		}
-	}
+    public void TimeSkill()
+    {
+
+        SkillCheck skillCheck = GameObject.Find("Player").GetComponent<SkillCheck>();
+        check = skillCheck.hazardcheck;
+
+        Debug.Log("skill");
+
+        if (check == true)
+        {
+            Switch();
+
+            Debug.Log("switch");
+        }
+    }
+
+    void Switch()
+    { // 실제로 바꾸는 함수
+        if (tileSet_A.activeSelf == true)
+        {   // A -> B
+            tileSet_B.SetActive(true);
+            tileSet_A.SetActive(false);
+
+            hazard_B.SetActive(true);
+            hazard_A.SetActive(false);
+
+            Debug.Log("A to B");
+        }
+        else if (tileSet_B.activeSelf == true)
+        {   // B -> A
+            tileSet_A.SetActive(true);
+            tileSet_B.SetActive(false);
+
+            hazard_A.SetActive(true);
+            hazard_B.SetActive(false);
+
+            Debug.Log("B to A");
+
+        }
+    }
+
 
 }

@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 224549003857927310}
   - component: {fileID: 222839664063881604}
   - component: {fileID: 114798096982258602}
+  - component: {fileID: 114165607069181724}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -385,6 +386,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Restart
+--- !u!114 &114165607069181724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563759519173304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114182398735136526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,8 +473,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: cb98c47434cd345fcb9dd2f126e8eb35, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -541,8 +556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4784d5c79af95c34e89fcf752de27c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisScene: Scene_121
-  QuitScene: Scene_12
+  ThisScene: Scene_111
+  QuitScene: Scene_11
 --- !u!114 &114579082684304562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -698,7 +713,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBA54\uB274"
+  m_Text: 
 --- !u!114 &114798096982258602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -720,10 +735,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 13
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -815,8 +830,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114138944552256770, guid: f44dc9b7261e01a4493bb8ee7307067c,
-          type: 2}
+      - m_Target: {fileID: 0}
         m_MethodName: TimeSkill
         m_Mode: 1
         m_Arguments:
@@ -875,8 +889,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 5995c1cbd4d5d4586807188c869e540a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1105,7 +1119,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -30, y: -25}
-  m_SizeDelta: {x: 40, y: 30}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224639447731935484
 RectTransform:
@@ -1124,7 +1138,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -40, y: 40}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224645539096520762
 RectTransform:
