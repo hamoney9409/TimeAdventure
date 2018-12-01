@@ -1860,7 +1860,7 @@ MonoBehaviour:
   expansionCoefficient: 50
   diagonals: 1
   pathFindingPos: {fileID: 0}
-  processingSpeed: 3
+  processingSpeed: 0
   testPathDestination: {fileID: 0}
 --- !u!136 &136801141252425812
 CapsuleCollider:
