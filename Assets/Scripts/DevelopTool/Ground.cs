@@ -12,15 +12,4 @@ public class Ground : MonoBehaviour {
             child.position = new Vector3((int)child.position.x, (int)child.position.y, (int)child.position.z);
         }
     }
-       
-	// Use this for initialization
-//	void Start ()
- //   {
-//	    
-//	}
-	
-	// Update is called once per frame
-//	void Update () {
-//		
-//	}
 }
