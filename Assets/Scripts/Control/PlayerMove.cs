@@ -2,7 +2,7 @@
 using UnityEngine.AI;
 using System.Collections;
 using Assets.Scripts.Util;
-
+using UnityEngine.EventSystems;    //UI 클릭시 터치 이벤트 발생 방지.
 
 [DisallowMultipleComponent]
 //[RequireComponent(typeof(NavMeshAgent))]
@@ -43,8 +43,10 @@ public class PlayerMove : MonoBehaviour{
     void Update(){
         if (Input.GetMouseButton(0))
         {
-            SetTargetPosition();
-            
+            if (EventSystem.current.IsPointerOverGameObject() == false)
+            {  //UI이 위가 아니면.
+                SetTargetPosition();
+            }
         }
 
         MovePlayer();

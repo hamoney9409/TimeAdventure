@@ -38,13 +38,13 @@ public class Skill : MonoBehaviour
         SkillCheck skillCheck = GameObject.Find("Player").GetComponent<SkillCheck>();
         check = skillCheck.hazardcheck;
 
-        Debug.Log("skill");
+        
 
         if (check == true)
         {
             Switch();
 
-            Debug.Log("switch");
+           
         }
     }
 
@@ -58,7 +58,7 @@ public class Skill : MonoBehaviour
             hazard_B.SetActive(true);
             hazard_A.SetActive(false);
 
-            Debug.Log("A to B");
+            
         }
         else if (tileSet_B.activeSelf == true)
         {   // B -> A
@@ -68,7 +68,7 @@ public class Skill : MonoBehaviour
             hazard_A.SetActive(true);
             hazard_B.SetActive(false);
 
-            Debug.Log("B to A");
+            
 
         }
     }

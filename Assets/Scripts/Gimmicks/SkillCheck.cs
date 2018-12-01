@@ -25,7 +25,7 @@ public class SkillCheck : MonoBehaviour
         {
             hazardcheck = false;
 
-            Debug.Log("hazard in");
+           
         }
 
     }
@@ -36,7 +36,7 @@ public class SkillCheck : MonoBehaviour
         {
             hazardcheck = true;
 
-            Debug.Log("hazard out");
+            
         }
 
     }
