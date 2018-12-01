@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222044462597090282}
   - component: {fileID: 114346017983045304}
   - component: {fileID: 114886844949627554}
+  - component: {fileID: 114037196385160138}
   m_Layer: 5
   m_Name: Skill
   m_TagString: Untagged
@@ -234,6 +235,7 @@ GameObject:
   - component: {fileID: 114970652986558830}
   - component: {fileID: 114006680928265598}
   - component: {fileID: 114577097250146420}
+  - component: {fileID: 114525862630125980}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
@@ -326,6 +328,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Quit
+--- !u!114 &114037196385160138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013227709534898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114092834842111750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -497,6 +513,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114525862630125980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1943506876951496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114531965141127608
 MonoBehaviour:
   m_ObjectHideFlags: 1

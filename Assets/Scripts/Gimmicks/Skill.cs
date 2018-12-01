@@ -44,8 +44,8 @@ public class Skill : MonoBehaviour
         {
             Switch();
 
-           
         }
+
     }
 
     void Switch()
