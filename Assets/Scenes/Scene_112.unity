@@ -5057,7 +5057,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 4}
+  m_Size: {x: 2, y: 2, z: 4}
   m_Center: {x: 1, y: 1, z: -2}
 --- !u!114 &167797617
 MonoBehaviour:
@@ -7736,7 +7736,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh36980
+  m_Name: pb_Mesh61324
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -25541,7 +25541,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh37208
+  m_Name: pb_Mesh61536
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -53110,7 +53110,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 4}
+  m_Size: {x: 2, y: 23, z: 4}
   m_Center: {x: 1, y: 1, z: -2}
 --- !u!114 &1613767714
 MonoBehaviour:
@@ -55524,7 +55524,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 4}
+  m_Size: {x: 2, y: 2, z: 4}
   m_Center: {x: 1, y: 1, z: -2}
 --- !u!114 &1721924341
 MonoBehaviour:
@@ -67765,7 +67765,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh29366
+  m_Name: pb_Mesh61288
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -70149,7 +70149,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh35840
+  m_Name: pb_Mesh60220
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -70597,7 +70597,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh28172
+  m_Name: pb_Mesh60068
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -72480,7 +72480,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh29290
+  m_Name: pb_Mesh61184
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -79363,7 +79363,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh36550
+  m_Name: pb_Mesh60896
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
