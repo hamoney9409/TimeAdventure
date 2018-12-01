@@ -20187,7 +20187,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-2880744
+  m_Name: pb_Mesh-345716
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -21653,7 +21653,7 @@ Prefab:
     - target: {fileID: 114038308055362406, guid: b259b73d833d43349a1d45c5af860c99,
         type: 2}
       propertyPath: nextScene
-      value: Main_Scene
+      value: MainScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b259b73d833d43349a1d45c5af860c99, type: 2}
@@ -41452,6 +41452,11 @@ Prefab:
     - target: {fileID: 4256034521352364, guid: 30298e33e2fb8954a8fdf3895b50e020, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114613811613243540, guid: 30298e33e2fb8954a8fdf3895b50e020,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30298e33e2fb8954a8fdf3895b50e020, type: 2}
