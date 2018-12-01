@@ -49,7 +49,7 @@ public class PlayerMove : MonoBehaviour{
             }
         }
 
-        MovePlayer();
+       // MovePlayer();
     }
 
     void SetTargetPosition()
@@ -103,20 +103,6 @@ public class PlayerMove : MonoBehaviour{
         //agent.SetDestination(targetPosition);
 
 
-        if (Vector3.Distance(gridPosition, transform.position) <= 0.01)
-        {
-            anim.clip = idle;
-            anim.Play();
-            
-        }
-        else {
-            anim.clip = walk;
-            anim.Play();
-        }
-
-        if (!anim.isPlaying)
-        {
-            anim.Play();
-        }
+      
     }
 }

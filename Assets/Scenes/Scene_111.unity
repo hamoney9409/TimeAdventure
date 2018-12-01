@@ -20366,6 +20366,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 195172962948327270, guid: 2d4f3f52371782f4f96c3144146f53d8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d4f3f52371782f4f96c3144146f53d8, type: 2}
   m_IsPrefabParent: 0
@@ -33286,7 +33291,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh50638
+  m_Name: pb_Mesh29894
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -61981,6 +61986,10 @@ Prefab:
     - target: {fileID: 4256034521352364, guid: 30298e33e2fb8954a8fdf3895b50e020, type: 2}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835409057344738, guid: 30298e33e2fb8954a8fdf3895b50e020, type: 2}
+      propertyPath: m_Name
+      value: SkillManager
       objectReference: {fileID: 0}
     - target: {fileID: 114613811613243540, guid: 30298e33e2fb8954a8fdf3895b50e020,
         type: 2}
