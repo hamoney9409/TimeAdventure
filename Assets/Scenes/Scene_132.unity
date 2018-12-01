@@ -1902,7 +1902,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh150066
+  m_Name: pb_Mesh22960
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -3224,7 +3224,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh33828
+  m_Name: pb_Mesh22602
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -5291,7 +5291,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh33966
+  m_Name: pb_Mesh23054
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -11015,7 +11015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2251b7bca904349b5a2d5671d81804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door: {fileID: 1294234011}
+  Door: {fileID: 195344931}
 --- !u!114 &1294234015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12149,7 +12149,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh34032
+  m_Name: pb_Mesh23250
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
