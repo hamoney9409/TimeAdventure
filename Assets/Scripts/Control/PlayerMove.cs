@@ -108,6 +108,7 @@ public class PlayerMove : MonoBehaviour{
                 anim["walk"].speed = 2.0f;
                 break;
             case UnitPathfinder.EventType.MOVE_FAILED:
+                GetComponent<AudioSource>().Play();
                 break;
         }
     }

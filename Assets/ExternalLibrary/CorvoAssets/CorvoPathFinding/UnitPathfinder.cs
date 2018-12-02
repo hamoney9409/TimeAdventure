@@ -26,12 +26,16 @@ public class UnitPathfinder : MonoBehaviour
     Vector3 destination;
     private Vector3 afterMovePosition; // 중간에 transform.position이 변경됬으면 이동을 중단시키기 위한 변수
 
-	bool mustMove=true;
-	float  pathRefreshTime=0;
+    bool mustMove = true;
+    float pathRefreshTime = 0;
 
-    void Start()
+    void Awake()
     {
         m_event = new Event<EventType>();
+    }
+    
+    void Start()
+    {
         UpdateafterMovePosition();
     }
 
