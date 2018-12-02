@@ -25,15 +25,19 @@ public class MainPlayer : MonoBehaviour {
     void Update()
     {
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-        anim.clip = walk;
-        anim.Play();
+        //anim.clip = walk;
+        //anim.Play();
     }
 
     private void OnTriggerEnter(Collider other){
+
         if (other.tag == "trigger") {
+
+
             count++;
             vec = transform.position;
-            vec.x = vec.x + 60;
+            vec.x = count * 100;
+
 
             if (count == 6){
                 vec.x = 0;
@@ -41,7 +45,8 @@ public class MainPlayer : MonoBehaviour {
             }
 
             transform.position = vec;
-  
+
+
         }
     }
 

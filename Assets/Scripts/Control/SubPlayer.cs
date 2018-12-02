@@ -23,17 +23,21 @@ public class SubPlayer : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-        anim.clip = walk;
-        anim.Play();
+        //anim.clip = walk;
+        //anim.Play();
     }
 
     private void OnTriggerEnter(Collider other){
+
         if (other.tag == "trigger"){
+
             count++;
             vec = transform.position;
-            vec.x = vec.x + 60;
+            vec.x = count * 100;
 
-            if (count == 2){
+
+            if (count == 2)
+            {
                 vec.x = 0;
                 count = 0;
             }
