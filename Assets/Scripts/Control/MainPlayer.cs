@@ -1,23 +1,26 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.AI;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Assets.Scripts.Util;
 
 public class MainPlayer : MonoBehaviour {
+
+    const int CHILDID_MODEL = 0;
 
     public int Speed;
     public AnimationClip walk;
     public Animation anim;
-
-    private Vector3 vec;
+    
     private int count = 0;
 
-
-
+    
     // Use this for initialization
     void Start()
     {
-
-        anim = GetComponent<Animation>();
+        anim = transform.GetChild(CHILDID_MODEL).GetComponent<Animation>();
+        anim.clip = walk;
+        anim.Play();
 
     }
 
@@ -25,28 +28,21 @@ public class MainPlayer : MonoBehaviour {
     void Update()
     {
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-        //anim.clip = walk;
-        //anim.Play();
+        
     }
 
-    private void OnTriggerEnter(Collider other){
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "trigger")
+        {
+            Vector3 newVec = new Vector3 
+            (
+                ((other.gameObject.name[7] - '0') % 6) * 100,
+                transform.position.y,
+                transform.position.z
+            );
 
-        if (other.tag == "trigger") {
-
-
-            count++;
-            vec = transform.position;
-            vec.x = count * 100;
-
-
-            if (count == 6){
-                vec.x = 0;
-                count = 0;
-            }
-
-            transform.position = vec;
-
-
+            transform.position = newVec;
         }
     }
 
