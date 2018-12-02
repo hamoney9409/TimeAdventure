@@ -17,6 +17,22 @@
 			{"FileName":"BGMs/Forest3", "StartTime":0.0},
 		]
 	}, 
+	{
+		"ClassID": 3,
+		"ClassName": "Mountain",
+		"BGMInfo":
+		[
+			{"FileName":"BGMs/Mountain1", "StartTime":0.0},
+		]
+	}, 
+	{
+		"ClassID": 4,
+		"ClassName": "City",
+		"BGMInfo":
+		[
+			{"FileName":"BGMs/City1", "StartTime":0.0},
+		]
+	}, 
 ]
 
 
