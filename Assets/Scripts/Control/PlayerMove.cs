@@ -99,7 +99,6 @@ public class PlayerMove : MonoBehaviour{
 
     void OnPathFinderHandle(UnitPathfinder.EventType e)
     {
-        Debug.Log(e.ToString());
     }
 
 }
