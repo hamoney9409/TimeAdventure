@@ -88,6 +88,7 @@ public class CorvoPathFinder:MonoBehaviour
 		{
 			if (!_updatePos)
 				_updatePos = transform;
+
 			calculating = true;
 			StartCoroutine(calculatePath(_destination, transform.position));
 			return true;
@@ -400,33 +401,26 @@ public class CorvoPathFinder:MonoBehaviour
                 }
             }
 
-            _nearestATALL = _nearestToDest;
-
             // 찾은 길 후처리
-            
-            // 꼬리처럼 매달려 있는 previousPathNode들에게 nextPathNode 값 정의
-            for (GridNode node = _nearestATALL; node != null; node = node.previousPathNode)
+            if (_nearestToDestDist < 1.9f)
             {
-                if (node.previousPathNode == null || node.previousPathNode == _firstNode) // 꼬리 없음
+                _nearestATALL = _nearestToDest;
+
+                // 꼬리처럼 매달려 있는 previousPathNode들에게 nextPathNode 값 정의
+                for (GridNode node = _nearestATALL; node != null; node = node.previousPathNode)
                 {
-                    node.previousPathNode = null;
-                    foundPath = node;
-                    break;
+                    if (node.previousPathNode == null || node.previousPathNode == _firstNode) // 꼬리 없음
+                    {
+                        node.previousPathNode = null;
+                        foundPath = node;
+                        break;
+                    }
+
+                    node.previousPathNode.nextPathNode = node;
                 }
-
-                node.previousPathNode.nextPathNode = node;
             }
-
-            //_havePath = foundPath != null;
-
-            //int passibase = 0, maxPassi = setMaxPassi();
         }
-        else
-        {
-            //_havePath = false;
-            if (!Application.isPlaying)
-                print("No path found!");
-        }
+
         _nearestATALL = _nearestToDest = null;
         calculating = false;
         clearGrid();

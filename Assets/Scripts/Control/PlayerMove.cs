@@ -21,15 +21,13 @@ public class PlayerMove : MonoBehaviour{
 
 
     Vector3 gridPosition;
-
-    //NavMeshAgent agent;
+    
     UnitPathfinder unitPathFinder;
 
     void Awake()
     {
-        //agent = GetComponent<NavMeshAgent>();
         unitPathFinder = GetComponent<UnitPathfinder>();
-        
+
     }
 
     void Start() {
@@ -37,10 +35,12 @@ public class PlayerMove : MonoBehaviour{
         anim = GetComponent<Animation>();
 
         targetPosition = transform.position;
+
+        unitPathFinder.AddEventListener(OnPathFinderHandle);
     }
 
-
-    void Update(){
+    void Update()
+    {
         if (Input.GetMouseButton(0))
         {
             if (EventSystem.current.IsPointerOverGameObject() == false)
@@ -78,7 +78,8 @@ public class PlayerMove : MonoBehaviour{
                     {
                         targetPosition = hit.point;
                     }
-
+                    
+                    
                     j *= 2;
                 }
             }
@@ -93,16 +94,12 @@ public class PlayerMove : MonoBehaviour{
             {
                 GetComponent<CorvoPathFinder>().findPath(targetPosition);
             }
-            
-            
-            //Debug.Log(a + "->" + targetPosition);
         }
     }
 
-    void MovePlayer() {
-        //agent.SetDestination(targetPosition);
-
-
-      
+    void OnPathFinderHandle(UnitPathfinder.EventType e)
+    {
+        Debug.Log(e.ToString());
     }
+
 }

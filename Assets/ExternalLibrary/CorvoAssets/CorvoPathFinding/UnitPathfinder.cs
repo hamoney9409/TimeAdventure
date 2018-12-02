@@ -1,17 +1,29 @@
-using System.Collections;
 using UnityEngine;
-using System.Collections.Generic;
 using Assets.Scripts.Util;
+using UnityEngine.Events;
 
-public class UnitPathfinder:MonoBehaviour
+public class UnitPathfinder : MonoBehaviour
 {
-	//AI PARAMETERS
-	public float moveSpeed=5;
+    //AI PARAMETERS
+    public float moveSpeed = 5;
     public float rotationSpeed = 300;
-    public rotationType updateRotation=rotationType.rotateLeftRight;
-	
-	//altro
-	Vector3 destination;
+    public rotationType updateRotation = rotationType.rotateLeftRight;
+
+    public enum EventType
+    {
+        MOVE_START,
+        MOVE_END,
+        MOVE_FAILED,
+    };
+
+    public class Event<T> : UnityEvent<T>
+    {
+    }
+
+    Event<EventType> m_event;
+
+    //altro
+    Vector3 destination;
     private Vector3 afterMovePosition; // 중간에 transform.position이 변경됬으면 이동을 중단시키기 위한 변수
 
 	bool mustMove=true;
@@ -19,6 +31,7 @@ public class UnitPathfinder:MonoBehaviour
 
     void Start()
     {
+        m_event = new Event<EventType>();
         UpdateafterMovePosition();
     }
 
@@ -86,12 +99,25 @@ public class UnitPathfinder:MonoBehaviour
 	bool destinationActive=false;
 	public void goTo(Vector3 _dest)//Start moving to position following pest path
 	{
-	    UpdateafterMovePosition();
+	    bool isSamePos = Vector3Util.IsAlmostEquals(destination, _dest);
+
+        UpdateafterMovePosition();
 
         destinationActive =true;
 		destination=_dest;
 		updatePath();
-	}
+
+	    if (!isSamePos)
+        {
+            m_event.Invoke(
+                GetComponent<CorvoPathFinder>().havePath()
+                    ? 
+                    EventType.MOVE_START 
+                    : 
+                    EventType.MOVE_FAILED
+            );
+        }
+    }
 	
 	public void stop()//stop unit if moving
 	{
@@ -105,9 +131,15 @@ public class UnitPathfinder:MonoBehaviour
 			pathRefreshTime = Time.time + Random.Range(9f, 12f);//update world path after X seconds (maybe world has changed?)
         else
             pathRefreshTime = Time.time + Random.Range(0.01f, 0.1f);//wait until can find new path
+
     }
-	
-	public void checkReachedNode()//Check if reached next Pathnode
+
+    public void AddEventListener(UnityAction<EventType> func)
+    {
+        m_event.AddListener(func);
+    }
+
+    public void checkReachedNode()//Check if reached next Pathnode
     {
         Vector3 curDestination = GetComponent<CorvoPathFinder>().getDestination();
         //if (GetComponent<CorvoPathFinder>().getDestination().Equals(transform.position) )
@@ -126,6 +158,7 @@ public class UnitPathfinder:MonoBehaviour
             if (Vector3Util.IsXZAlmostEquals(transform.position, destination))
             {
                 stop();
+                m_event.Invoke(EventType.MOVE_END);
             }
 			else
             {

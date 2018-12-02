@@ -124,6 +124,7 @@ ModelImporter:
     7400000: idle
     7400002: walk
     9500000: //RootNode
+    11100000: //RootNode
     13700000: "\uBAA8\uB378"
   externalObjects:
   - first:
@@ -163,7 +164,7 @@ ModelImporter:
       takeName: idle
       firstFrame: 10
       lastFrame: 30
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 10
@@ -191,7 +192,7 @@ ModelImporter:
       takeName: walk
       firstFrame: 40
       lastFrame: 92
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 40
@@ -258,10 +259,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
