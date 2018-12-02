@@ -14,8 +14,6 @@ public class PlayerMove : MonoBehaviour{
     const int CHILDID_MODEL = 0;
 
     public bool pathFindingTest = false;
-    public AnimationClip idle;
-    public AnimationClip walk;
 
     Animation anim;
 
@@ -31,12 +29,13 @@ public class PlayerMove : MonoBehaviour{
     }
 
     void Start() {
-
-        anim = GetComponent<Animation>();
+        anim = transform.GetChild(CHILDID_MODEL).GetComponent<Animation>();
 
         targetPosition = transform.position;
 
         unitPathFinder.AddEventListener(OnPathFinderHandle);
+        
+        anim.Play("idle");
     }
 
     void Update()
@@ -99,6 +98,18 @@ public class PlayerMove : MonoBehaviour{
 
     void OnPathFinderHandle(UnitPathfinder.EventType e)
     {
+        switch (e)
+        {
+            case UnitPathfinder.EventType.MOVE_END:
+                anim.Play("idle");
+                break;
+            case UnitPathfinder.EventType.MOVE_START:
+                anim.Play("walk");
+                anim["walk"].speed = 2.0f;
+                break;
+            case UnitPathfinder.EventType.MOVE_FAILED:
+                break;
+        }
     }
 
 }

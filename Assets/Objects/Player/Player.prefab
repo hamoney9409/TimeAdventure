@@ -461,8 +461,6 @@ GameObject:
   - component: {fileID: 114508596578038236}
   - component: {fileID: 114969393933220180}
   - component: {fileID: 114945138114293228}
-  - component: {fileID: 111381497571775260}
-  - component: {fileID: 95919648157142786}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1133,7 +1131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532673606829228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.6291113, y: 3.8935857, z: -3.6676426}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4718773174426230}
@@ -1752,24 +1750,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &95919648157142786
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1532673606829228}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0702f9126b203db4a987a4debb074c60, type: 3}
-  m_Controller: {fileID: 9100000, guid: e7d7338de1142004ba89b5a282dfd4c2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!111 &111240056646513514
 Animation:
   m_ObjectHideFlags: 1
@@ -1786,22 +1766,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!111 &111381497571775260
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1532673606829228}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0702f9126b203db4a987a4debb074c60, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 0702f9126b203db4a987a4debb074c60, type: 3}
-  - {fileID: 7400002, guid: 0702f9126b203db4a987a4debb074c60, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &114508596578038236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1814,8 +1778,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathFindingTest: 0
-  idle: {fileID: 7400000, guid: 0702f9126b203db4a987a4debb074c60, type: 3}
-  walk: {fileID: 7400002, guid: 0702f9126b203db4a987a4debb074c60, type: 3}
 --- !u!114 &114945138114293228
 MonoBehaviour:
   m_ObjectHideFlags: 1

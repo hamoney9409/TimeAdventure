@@ -119,11 +119,12 @@ public class UnitPathfinder : MonoBehaviour
         }
     }
 	
-	public void stop()//stop unit if moving
+	public void stop() //stop unit if moving
 	{
 		GetComponent<CorvoPathFinder>().forceStop();
 		destinationActive=false;
-	}
+        m_event.Invoke(EventType.MOVE_END);
+    }
 	
     public void updatePath()//reload the path to see if world has changed
     {
@@ -158,7 +159,6 @@ public class UnitPathfinder : MonoBehaviour
             if (Vector3Util.IsXZAlmostEquals(transform.position, destination))
             {
                 stop();
-                m_event.Invoke(EventType.MOVE_END);
             }
 			else
             {
