@@ -7,6 +7,13 @@ TagManager:
   - Foe
   - Bullet
   - UnBlockableBullet
+  - End
+  - tileSet_B
+  - hazard
+  - tileSet_A
+  - trigger
+  - switch
+  - bridge
   layers:
   - Default
   - TransparentFX
