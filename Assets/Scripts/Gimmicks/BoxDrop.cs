@@ -7,9 +7,16 @@ public class BoxDrop : MonoBehaviour {
     public GameObject Box;
     
     bool isDrop = false;
+
+   
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && !isDrop) Drop();
+        if (other.gameObject.tag == "Player" && !isDrop)
+        {
+            Drop();
+          
+        }
     }
     void Drop()
     {

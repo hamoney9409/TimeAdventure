@@ -22,8 +22,14 @@ public class ClearGame : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene(nextScene);
+            Invoke("GoNext", 2f);
+            
         }
+    }
+
+    void GoNext()
+    {
+        SceneManager.LoadScene(nextScene);
     }
 
 }
