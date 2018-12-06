@@ -8131,7 +8131,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh739450
+  m_Name: pb_Mesh39128
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -25936,7 +25936,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh739662
+  m_Name: pb_Mesh39340
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -41034,6 +41034,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224703760297966110, guid: 3964983e7f3efa34f9b11a51794f7254,
         type: 2}
       propertyPath: m_RootOrder
@@ -41229,6 +41234,31 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: fc3d31fd95f4b274c8e6dc3d202f9e61, type: 3}
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3964983e7f3efa34f9b11a51794f7254, type: 2}
   m_IsPrefabParent: 0
@@ -71460,7 +71490,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh738306
+  m_Name: pb_Mesh37984
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -80760,7 +80790,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh738998
+  m_Name: pb_Mesh38676
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

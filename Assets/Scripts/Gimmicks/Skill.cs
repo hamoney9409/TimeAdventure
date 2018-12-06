@@ -43,7 +43,7 @@ public class Skill : MonoBehaviour
         if (check == true)
         {
             Switch();
-
+            GameObject.Find("Audio Source_Skill").GetComponent<AudioSource>().Play();
         }
 
     }

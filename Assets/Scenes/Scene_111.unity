@@ -20989,7 +20989,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh26052
+  m_Name: pb_Mesh25516
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -21189,6 +21189,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224812575536763952, guid: 3964983e7f3efa34f9b11a51794f7254,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -21338,6 +21343,21 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlayOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886844949627554, guid: 3964983e7f3efa34f9b11a51794f7254,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3964983e7f3efa34f9b11a51794f7254, type: 2}
@@ -67734,7 +67754,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh26098
+  m_Name: pb_Mesh25562
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
