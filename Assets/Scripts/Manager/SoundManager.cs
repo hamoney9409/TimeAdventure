@@ -111,6 +111,7 @@ class SoundManager
         List<BGMSetInfo._BGMInfo> list = datatableBGM[name].BGMInfo;
 
         audioSource.clip = ReadMP3(list[UnityEngine.Random.Range(0, list.Count)].FileName);
+        audioSource.loop = true;
         audioSource.Play();
     }
 
