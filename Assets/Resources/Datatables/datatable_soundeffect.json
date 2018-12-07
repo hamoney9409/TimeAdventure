@@ -1,15 +1,10 @@
 [
 	{
 		"ClassID": 1,
-		"ClassName": "Damaged",
+		"ClassName": "CannotChangeTime",
 		"FileNames":
 		[ 
-			"Sounds/Damaged1",
-			"Sounds/Damaged2",
-			"Sounds/Damaged3",
-			"Sounds/Damaged4",
-			"Sounds/Damaged5",
-			"Sounds/Damaged6",
+			"Sounds/CannotChangeTime",
 		]
 	}, 
 ]

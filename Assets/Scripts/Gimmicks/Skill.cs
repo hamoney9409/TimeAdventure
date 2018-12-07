@@ -10,9 +10,7 @@ public class Skill : MonoBehaviour
 
     public GameObject hazard_A;     // 1번지형에서 닿으면 스킬발동 안되는곳
     public GameObject hazard_B;     // 2번지형에서 닿으면 스킬발동 안되는곳
-
-    private bool check;
-
+    
 
     void Start()
     {
@@ -36,14 +34,17 @@ public class Skill : MonoBehaviour
     {
 
         SkillCheck skillCheck = GameObject.Find("Player").GetComponent<SkillCheck>();
-        check = skillCheck.hazardcheck;
+        bool check = skillCheck.hazardcheck;
 
-        
+
 
         if (check == true)
         {
             Switch();
             GameObject.Find("Audio Source_Skill").GetComponent<AudioSource>().Play();
+        }
+        else if (check == false) {
+            SoundManager.instance.PlaySound("CannotChangeTime");
         }
 
     }
